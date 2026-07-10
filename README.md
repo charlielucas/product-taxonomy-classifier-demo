@@ -99,6 +99,13 @@ The classifier is a small pure-Python multinomial Naive Bayes model. That keeps 
 
 A larger version of this would probably use scikit-learn or embeddings, add better evaluation, and track model versions. For this repo, the goal is to show the workflow clearly without hiding the important parts behind a library call.
 
+## Known Limits
+
+- The dataset is small and synthetic.
+- The model report uses a simple holdout split.
+- Confidence scores are useful for review routing, not calibration.
+- The taxonomy is fixed in code for this demo.
+
 ## Safety Notes
 
 - no real employer data
