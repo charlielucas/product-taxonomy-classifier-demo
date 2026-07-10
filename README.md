@@ -106,10 +106,3 @@ A larger version of this would probably use scikit-learn or embeddings, add bett
 - Confidence scores are useful for review routing, not calibration.
 - The taxonomy is fixed in code for this demo.
 
-## Safety Notes
-
-- no real employer data
-- no internal schema names
-- no private business records
-- no credentials or API keys
-- no private work code
