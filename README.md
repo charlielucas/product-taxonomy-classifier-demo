@@ -1,22 +1,21 @@
-# Product Taxonomy Classifier Demo
+# Product Taxonomy Classifier
 
-A small synthetic demo of a product taxonomy workflow: train a text classifier, score unlabeled product records, flag low-confidence predictions, and create a review queue for human validation.
+A small Python project for classifying product records into a controlled taxonomy.
 
-This is not employer code and does not use real company data. The products, vendors, labels, and manufacturers are synthetic.
+The data is synthetic. It is not employer code, and it does not use real customer, vendor, or product data.
 
-## Why I Built This
+## What It Does
 
-I wanted a safe public version of a workflow I care about: turning inconsistent product descriptions into structured labels that people can inspect and improve. The useful part is not only making predictions. It is making the output reviewable enough that a teammate can see what the model thinks, where it is unsure, and what needs a human decision.
+The workflow trains a lightweight text classifier on labeled product records, scores new records, and writes a review queue for records that need a closer look.
 
-## What It Shows
+The repo is small, but it covers the main pieces of the workflow:
 
-- A lightweight text classifier written in Python with no external ML dependencies
-- Multi-field product records with vendor, part number, and description text
-- Category and manufacturer prediction
-- Confidence scoring
-- Review queue creation for low-confidence records
-- Validation checks for allowed labels
-- A short model report for practical inspection
+- combine vendor, part number, and description text
+- predict product category and manufacturer
+- keep confidence scores with each prediction
+- validate labels against allowed values
+- flag lower-confidence records for review
+- write simple outputs that can be checked by a person
 
 ## Project Structure
 
@@ -27,76 +26,83 @@ product-taxonomy-classifier-demo/
     unlabeled_products.csv
   examples/
     model_report.md
+    predictions.csv
     review_queue.csv
   src/
     product_taxonomy_classifier/
+      __main__.py
       cli.py
       model.py
       text.py
       validation.py
   tests/
+    test_cli.py
     test_model.py
     test_validation.py
+  Makefile
 ```
 
 ## Quick Start
 
-Use Python 3.10 or newer.
+Use Python 3.9 or newer.
 
 ```bash
-python -m product_taxonomy_classifier.cli evaluate
-python -m product_taxonomy_classifier.cli predict
-python -m product_taxonomy_classifier.cli review
+PYTHONPATH=src python3 -m product_taxonomy_classifier evaluate
+PYTHONPATH=src python3 -m product_taxonomy_classifier predict
+PYTHONPATH=src python3 -m product_taxonomy_classifier review
 ```
 
-If running from a fresh clone, set `PYTHONPATH`:
+Or use the Makefile:
 
 ```bash
-PYTHONPATH=src python -m product_taxonomy_classifier.cli evaluate
-PYTHONPATH=src python -m product_taxonomy_classifier.cli predict
-PYTHONPATH=src python -m product_taxonomy_classifier.cli review
+make test
+make evaluate
+make review
 ```
 
 Run tests:
 
 ```bash
-PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python3 -m unittest discover -s tests
 ```
 
-## Example Output
+## Command Options
 
-The review command writes:
+The review threshold can be tuned without changing code:
 
-- `examples/review_queue.csv`
+```bash
+PYTHONPATH=src python3 -m product_taxonomy_classifier review --threshold 0.85
+```
+
+You can also pass alternate input and output paths:
+
+```bash
+PYTHONPATH=src python3 -m product_taxonomy_classifier predict \
+  --training-data data/products.csv \
+  --unlabeled-data data/unlabeled_products.csv \
+  --output-dir examples
+```
+
+## Outputs
+
+The commands write:
+
 - `examples/model_report.md`
+- `examples/predictions.csv`
+- `examples/review_queue.csv`
 
-The queue is meant for a human reviewer. It includes the original record, predicted labels, confidence scores, and review reasons.
+The review queue keeps the original record next to the predicted labels, confidence scores, and review reasons.
 
 ## Design Notes
 
-This repo intentionally uses a small pure-Python multinomial Naive Bayes classifier. A production workflow would likely use scikit-learn, embeddings, richer model evaluation, and stronger monitoring, but the small implementation keeps the logic easy to inspect.
+The classifier is a small pure-Python multinomial Naive Bayes model. That keeps the logic easy to inspect in a short repo.
 
-The important workflow shape is:
-
-1. Train on known records.
-2. Predict labels for new records.
-3. Validate labels against allowed taxonomy values.
-4. Flag low-confidence or invalid outputs.
-5. Send uncertain records to a review queue.
+A larger version of this would probably use scikit-learn or embeddings, add better evaluation, and track model versions. For this repo, the goal is to show the workflow clearly without hiding the important parts behind a library call.
 
 ## Safety Notes
 
-- No real employer data
-- No internal schema names
-- No private business records or real operational data
-- No credentials
-- No API keys
-- No private work code
-
-## Possible Next Steps
-
-- Add a small React review UI
-- Add richer evaluation metrics
-- Add grouped reporting by vendor
-- Add a mock LLM review step for low-confidence predictions
-- Add model/version metadata to each output file
+- no real employer data
+- no internal schema names
+- no private business records
+- no credentials or API keys
+- no private work code

@@ -1,0 +1,13 @@
+product_id,vendor,part_number,description,predicted_category,category_confidence,predicted_manufacturer,manufacturer_confidence,needs_review,review_reasons
+U-2001,Ridge Supply,NS-BRK-999,Front disc pad kit with wear sensor and quiet shim,Brake System,0.989,Northstar Components,0.972,False,
+U-2002,Metro Parts,BP-CAB-901,Cabin filter charcoal media for pollen and fine dust,Cabin Comfort,0.976,BluePeak,0.981,False,
+U-2003,Harbor Direct,TL-DRV-772,Replacement CV shaft with axle nut and tone ring,Drivetrain,0.985,TerraLine,0.980,False,
+U-2004,Ridge Supply,OP-ELC-118,Headlight connector pigtail with weatherproof terminals,Electrical,0.845,Orbit Parts,0.912,False,
+U-2005,Metro Parts,TL-CLG-443,Radiator expansion tank cap and bleeder screw,Engine Cooling,0.987,TerraLine,0.824,False,
+U-2006,Harbor Direct,APX-EXT-630,Mirror glass backing plate heated passenger side,Exterior,0.967,Apex AutoWorks,0.981,False,
+U-2007,Ridge Supply,HW-FLD-451,Brake hydraulic fluid DOT 4 twelve ounce bottle,Fluids,0.956,BluePeak,0.664,True,low manufacturer confidence
+U-2008,Metro Parts,NS-TOL-812,Adapter for cooling system pressure test pump,Tools,0.935,Northstar Components,0.984,False,
+U-2009,Harbor Direct,OP-CAB-434,Air door actuator for passenger temperature blend,Cabin Comfort,0.978,Orbit Parts,0.981,False,
+U-2010,Ridge Supply,APX-DRV-544,Transmission support mount with rubber isolator,Drivetrain,0.930,Apex AutoWorks,0.929,False,
+U-2011,Metro Parts,HW-ELC-392,Starter cable fusible link block with cover,Electrical,0.943,Harbor Works,0.959,False,
+U-2012,Harbor Direct,ZZ-MIX-001,Universal service pack with cap seal clip and small tool,Engine Cooling,0.231,Apex AutoWorks,0.310,True,low category confidence; low manufacturer confidence

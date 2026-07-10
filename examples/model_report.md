@@ -7,5 +7,24 @@ Synthetic holdout evaluation using every fifth record as the test set.
 - Category accuracy: 70.0%
 - Manufacturer accuracy: 80.0%
 
-This report is intentionally small. In a production workflow, I would add
-per-label precision/recall, drift checks, sampled review, and model versioning.
+## Category Checks
+
+- Brake System: 2/2
+- Cabin Comfort: 0/1
+- Drivetrain: 0/1
+- Electrical: 1/1
+- Engine Cooling: 1/1
+- Exterior: 1/2
+- Fluids: 1/1
+- Tools: 1/1
+
+## Manufacturer Checks
+
+- Apex AutoWorks: 1/1
+- BluePeak: 1/1
+- Harbor Works: 1/2
+- Northstar Components: 3/4
+- Orbit Parts: 2/2
+
+The holdout is small by design. The report is meant to show the workflow
+shape rather than claim production model quality.

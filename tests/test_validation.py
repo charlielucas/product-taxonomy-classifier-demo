@@ -26,6 +26,25 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual(reasons, [])
         self.assertFalse(needs_review(reasons))
 
+    def test_threshold_can_be_tuned(self):
+        strict_reasons = review_reasons(
+            category="Brake System",
+            category_confidence=0.80,
+            manufacturer="Apex AutoWorks",
+            manufacturer_confidence=0.91,
+            threshold=0.85,
+        )
+        relaxed_reasons = review_reasons(
+            category="Brake System",
+            category_confidence=0.80,
+            manufacturer="Apex AutoWorks",
+            manufacturer_confidence=0.91,
+            threshold=0.70,
+        )
+
+        self.assertIn("low category confidence", strict_reasons)
+        self.assertEqual(relaxed_reasons, [])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,4 @@
-"""Command line entry points for the taxonomy demo."""
+"""Command line entry points for the taxonomy workflow."""
 
 from __future__ import annotations
 
@@ -21,8 +21,29 @@ def build_classifiers(records: list[dict[str, str]]) -> tuple[NaiveBayesTextClas
     return category_model, manufacturer_model
 
 
-def evaluate() -> str:
-    records = load_csv(TRAINING_DATA)
+def label_accuracy_rows(
+    records: list[dict[str, str]],
+    classifier: NaiveBayesTextClassifier,
+    target: str,
+) -> list[str]:
+    totals: dict[str, int] = {}
+    correct: dict[str, int] = {}
+
+    for record in records:
+        expected = record[target]
+        totals[expected] = totals.get(expected, 0) + 1
+        if classifier.predict(record).label == expected:
+            correct[expected] = correct.get(expected, 0) + 1
+
+    rows = []
+    for label in sorted(totals):
+        label_correct = correct.get(label, 0)
+        rows.append(f"- {label}: {label_correct}/{totals[label]}")
+    return rows
+
+
+def evaluate(training_data: Path = TRAINING_DATA, output_dir: Path = EXAMPLES_DIR) -> str:
+    records = load_csv(training_data)
     train, test = train_test_split(records)
     category_model, manufacturer_model = build_classifiers(train)
 
@@ -40,19 +61,32 @@ def evaluate() -> str:
             f"- Category accuracy: {category_accuracy:.1%}",
             f"- Manufacturer accuracy: {manufacturer_accuracy:.1%}",
             "",
-            "This report is intentionally small. In a production workflow, I would add",
-            "per-label precision/recall, drift checks, sampled review, and model versioning.",
+            "## Category Checks",
+            "",
+            *label_accuracy_rows(test, category_model, "category"),
+            "",
+            "## Manufacturer Checks",
+            "",
+            *label_accuracy_rows(test, manufacturer_model, "manufacturer"),
+            "",
+            "The holdout is small by design. The report is meant to show the workflow",
+            "shape rather than claim production model quality.",
             "",
         ]
     )
-    EXAMPLES_DIR.mkdir(parents=True, exist_ok=True)
-    (EXAMPLES_DIR / "model_report.md").write_text(report, encoding="utf-8")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    (output_dir / "model_report.md").write_text(report, encoding="utf-8")
     return report
 
 
-def predict() -> list[dict[str, object]]:
-    records = load_csv(TRAINING_DATA)
-    unlabeled = load_csv(UNLABELED_DATA)
+def predict(
+    training_data: Path = TRAINING_DATA,
+    unlabeled_data: Path = UNLABELED_DATA,
+    output_dir: Path = EXAMPLES_DIR,
+    threshold: float = 0.72,
+) -> list[dict[str, object]]:
+    records = load_csv(training_data)
+    unlabeled = load_csv(unlabeled_data)
     category_model, manufacturer_model = build_classifiers(records)
 
     rows: list[dict[str, object]] = []
@@ -64,6 +98,7 @@ def predict() -> list[dict[str, object]]:
             category_prediction.confidence,
             manufacturer_prediction.label,
             manufacturer_prediction.confidence,
+            threshold=threshold,
         )
         rows.append(
             {
@@ -89,31 +124,55 @@ def predict() -> list[dict[str, object]]:
         "needs_review",
         "review_reasons",
     ]
-    write_csv(EXAMPLES_DIR / "predictions.csv", rows, fieldnames)
+    write_csv(output_dir / "predictions.csv", rows, fieldnames)
     return rows
 
 
-def review() -> list[dict[str, object]]:
-    rows = predict()
+def review(
+    training_data: Path = TRAINING_DATA,
+    unlabeled_data: Path = UNLABELED_DATA,
+    output_dir: Path = EXAMPLES_DIR,
+    threshold: float = 0.72,
+) -> list[dict[str, object]]:
+    rows = predict(
+        training_data=training_data,
+        unlabeled_data=unlabeled_data,
+        output_dir=output_dir,
+        threshold=threshold,
+    )
     review_rows = [row for row in rows if row["needs_review"] == "True"]
     fieldnames = list(rows[0].keys()) if rows else []
-    write_csv(EXAMPLES_DIR / "review_queue.csv", review_rows, fieldnames)
+    write_csv(output_dir / "review_queue.csv", review_rows, fieldnames)
     return review_rows
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Synthetic product taxonomy classifier demo")
+    parser = argparse.ArgumentParser(description="Product taxonomy classification workflow")
     parser.add_argument("command", choices=["evaluate", "predict", "review"])
+    parser.add_argument("--training-data", type=Path, default=TRAINING_DATA)
+    parser.add_argument("--unlabeled-data", type=Path, default=UNLABELED_DATA)
+    parser.add_argument("--output-dir", type=Path, default=EXAMPLES_DIR)
+    parser.add_argument("--threshold", type=float, default=0.72)
     args = parser.parse_args()
 
     if args.command == "evaluate":
-        print(evaluate())
+        print(evaluate(training_data=args.training_data, output_dir=args.output_dir))
     elif args.command == "predict":
-        rows = predict()
-        print(f"Wrote {len(rows)} predictions to {EXAMPLES_DIR / 'predictions.csv'}")
+        rows = predict(
+            training_data=args.training_data,
+            unlabeled_data=args.unlabeled_data,
+            output_dir=args.output_dir,
+            threshold=args.threshold,
+        )
+        print(f"Wrote {len(rows)} predictions to {args.output_dir / 'predictions.csv'}")
     elif args.command == "review":
-        rows = review()
-        print(f"Wrote {len(rows)} review rows to {EXAMPLES_DIR / 'review_queue.csv'}")
+        rows = review(
+            training_data=args.training_data,
+            unlabeled_data=args.unlabeled_data,
+            output_dir=args.output_dir,
+            threshold=args.threshold,
+        )
+        print(f"Wrote {len(rows)} review rows to {args.output_dir / 'review_queue.csv'}")
 
 
 if __name__ == "__main__":
