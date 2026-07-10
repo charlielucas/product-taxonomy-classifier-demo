@@ -1,0 +1,3 @@
+product_id,vendor,part_number,description,predicted_category,category_confidence,predicted_manufacturer,manufacturer_confidence,needs_review,review_reasons
+U-2007,Ridge Supply,HW-FLD-451,Brake hydraulic fluid DOT 4 twelve ounce bottle,Fluids,0.956,BluePeak,0.664,True,low manufacturer confidence
+U-2012,Harbor Direct,ZZ-MIX-001,Universal service pack with cap seal clip and small tool,Engine Cooling,0.231,Apex AutoWorks,0.310,True,low category confidence; low manufacturer confidence

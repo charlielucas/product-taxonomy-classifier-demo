@@ -1,0 +1,49 @@
+product_id,vendor,part_number,description,category,manufacturer
+P-1001,Ridge Supply,NS-BRK-204,Ceramic front brake pad set with quiet shim kit,Brake System,Northstar Components
+P-1002,Ridge Supply,NS-BRK-317,Rear rotor pair with coated hat and vented cooling vanes,Brake System,Northstar Components
+P-1003,Metro Parts,APX-BRK-102,Hydraulic brake hose assembly with copper washers,Brake System,Apex AutoWorks
+P-1004,Metro Parts,APX-BRK-411,Brake caliper rebuild kit with seals pins and boots,Brake System,Apex AutoWorks
+P-1005,Harbor Direct,HW-BRK-225,Parking brake shoe hardware spring kit,Brake System,Harbor Works
+P-1006,Harbor Direct,HW-BRK-502,Low dust brake pad sensor wire set,Brake System,Harbor Works
+P-1007,Ridge Supply,BP-CAB-144,Activated carbon cabin air filter for dust and pollen,Cabin Comfort,BluePeak
+P-1008,Ridge Supply,BP-CAB-288,Blower motor resistor with wiring pigtail,Cabin Comfort,BluePeak
+P-1009,Metro Parts,TL-CAB-035,Heater control knob set with backlight icons,Cabin Comfort,TerraLine
+P-1010,Metro Parts,TL-CAB-419,Seat heater switch module for console trim,Cabin Comfort,TerraLine
+P-1011,Harbor Direct,OP-CAB-601,HVAC blend door actuator with mounting screws,Cabin Comfort,Orbit Parts
+P-1012,Harbor Direct,OP-CAB-777,Interior temperature sensor with aspirator tube,Cabin Comfort,Orbit Parts
+P-1013,Ridge Supply,TL-DRV-118,Front CV axle shaft with ABS tone ring,Drivetrain,TerraLine
+P-1014,Ridge Supply,TL-DRV-640,Transfer case output seal and dust shield,Drivetrain,TerraLine
+P-1015,Metro Parts,NS-DRV-233,Wheel hub bearing assembly with integrated sensor,Drivetrain,Northstar Components
+P-1016,Metro Parts,NS-DRV-951,Differential cover gasket and fill plug kit,Drivetrain,Northstar Components
+P-1017,Harbor Direct,APX-DRV-812,Automatic transmission mount with bracket,Drivetrain,Apex AutoWorks
+P-1018,Harbor Direct,APX-DRV-920,Driveshaft center support bearing,Drivetrain,Apex AutoWorks
+P-1019,Ridge Supply,OP-ELC-220,Alternator voltage regulator with brush holder,Electrical,Orbit Parts
+P-1020,Ridge Supply,OP-ELC-481,Headlamp wiring repair connector with terminals,Electrical,Orbit Parts
+P-1021,Metro Parts,HW-ELC-154,Battery terminal fuse block with protective cover,Electrical,Harbor Works
+P-1022,Metro Parts,HW-ELC-730,Door lock actuator motor and latch cable,Electrical,Harbor Works
+P-1023,Harbor Direct,BP-ELC-335,Crankshaft position sensor with o-ring,Electrical,BluePeak
+P-1024,Harbor Direct,BP-ELC-661,Ignition coil pack for four cylinder engine,Electrical,BluePeak
+P-1025,Ridge Supply,BP-CLG-108,Engine coolant thermostat and housing assembly,Engine Cooling,BluePeak
+P-1026,Ridge Supply,BP-CLG-506,Radiator cap pressure rated with safety lever,Engine Cooling,BluePeak
+P-1027,Metro Parts,OP-CLG-239,Water pump gasket and pulley bolt kit,Engine Cooling,Orbit Parts
+P-1028,Metro Parts,OP-CLG-804,Upper radiator hose molded with quick connector,Engine Cooling,Orbit Parts
+P-1029,Harbor Direct,TL-CLG-128,Cooling fan relay and resistor harness,Engine Cooling,TerraLine
+P-1030,Harbor Direct,TL-CLG-612,Expansion tank with level sensor port,Engine Cooling,TerraLine
+P-1031,Ridge Supply,APX-EXT-118,Textured black mirror cover passenger side,Exterior,Apex AutoWorks
+P-1032,Ridge Supply,APX-EXT-442,Front bumper retainer bracket and clip set,Exterior,Apex AutoWorks
+P-1033,Metro Parts,HW-EXT-270,Weatherstrip door seal roll with molded corner,Exterior,Harbor Works
+P-1034,Metro Parts,HW-EXT-739,License plate lamp lens and gasket,Exterior,Harbor Works
+P-1035,Harbor Direct,NS-EXT-340,Hood lift support strut pair,Exterior,Northstar Components
+P-1036,Harbor Direct,NS-EXT-905,Wheel arch liner fastener assortment,Exterior,Northstar Components
+P-1037,Ridge Supply,HW-FLD-120,Full synthetic 5W-30 engine oil six quart case,Fluids,Harbor Works
+P-1038,Ridge Supply,HW-FLD-602,Long life red coolant concentrate gallon,Fluids,Harbor Works
+P-1039,Metro Parts,BP-FLD-311,Automatic transmission fluid low viscosity case,Fluids,BluePeak
+P-1040,Metro Parts,BP-FLD-624,DOT 4 brake fluid sealed metal can,Fluids,BluePeak
+P-1041,Harbor Direct,OP-FLD-219,Power steering fluid with leak conditioner,Fluids,Orbit Parts
+P-1042,Harbor Direct,OP-FLD-778,Washer fluid winter blend case pack,Fluids,Orbit Parts
+P-1043,Ridge Supply,TL-TOL-141,Serpentine belt tensioner wrench kit,Tools,TerraLine
+P-1044,Ridge Supply,TL-TOL-909,Trim removal tool set with nylon pry bars,Tools,TerraLine
+P-1045,Metro Parts,NS-TOL-388,Brake caliper wind back tool cube,Tools,Northstar Components
+P-1046,Metro Parts,NS-TOL-673,Cooling system pressure tester adapter,Tools,Northstar Components
+P-1047,Harbor Direct,APX-TOL-250,Digital multimeter with fused leads,Tools,Apex AutoWorks
+P-1048,Harbor Direct,APX-TOL-733,Oil filter cup wrench set,Tools,Apex AutoWorks
